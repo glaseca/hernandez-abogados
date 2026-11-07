@@ -11,7 +11,8 @@ publicarse en GitHub Pages, Netlify o Cloudflare Pages sin configuración adicio
 
 ## Puesta en marcha
 
-Requisitos: Node.js 22 (hay un `.nvmrc`) y npm.
+Requisitos: Node.js 24 con el npm que lo acompaña (hay un `.nvmrc`). Evita generar el
+`package-lock.json` con versiones distintas de npm: el lockfile se valida con `npm ci` en CI.
 
 ```bash
 npm install
@@ -128,7 +129,7 @@ funciona sin retoques manuales.
 
 ### Netlify
 
-Conecta el repositorio y Netlify leerá `netlify.toml` (build `npm run build`, publish `dist`, Node 22
+Conecta el repositorio y Netlify leerá `netlify.toml` (build `npm run build`, publish `dist`, Node 24
 y cabeceras de seguridad). También puedes desplegar manualmente:
 
 ```bash
@@ -140,7 +141,7 @@ npx netlify deploy --prod --dir=dist
 
 - Build command: `npm run build`
 - Output directory: `dist`
-- Node version: 22
+- Node version: 24
 
 `wrangler.jsonc` ya apunta a `./dist`, por lo que también vale:
 
