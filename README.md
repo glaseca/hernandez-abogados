@@ -11,8 +11,9 @@ publicarse en GitHub Pages, Netlify o Cloudflare Pages sin configuración adicio
 
 ## Puesta en marcha
 
-Requisitos: Node.js 24 con el npm que lo acompaña (hay un `.nvmrc`). Evita generar el
-`package-lock.json` con versiones distintas de npm: el lockfile se valida con `npm ci` en CI.
+Requisitos: Node.js 24 con el npm que lo acompaña (hay un `.nvmrc`). El workflow instala con
+`npm install` para evitar un fallo conocido de `npm ci` con dependencias opcionales wasm32 cuando
+el lockfile se genera en Windows.
 
 ```bash
 npm install

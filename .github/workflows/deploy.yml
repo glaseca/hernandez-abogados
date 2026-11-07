@@ -28,7 +28,10 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        # npm ci falla en Linux por un bug de npm con dependencias opcionales
+        # wasm32 (@emnapi/*) que el lockfile generado en Windows no incluye.
+        # npm install resuelve y añade esas entradas al vuelo.
+        run: npm install --no-audit --no-fund
 
       - name: Build
         run: npm run build
