@@ -1,0 +1,6 @@
+# Landing de demostración: no indexar.
+# Para publicar el sitio definitivamente, elimina este archivo o cambia
+# "Disallow: /" por "Allow: /" y retira el noindex de src/layouts/BaseLayout.astro.
+
+User-agent: *
+Disallow: /

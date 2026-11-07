@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import { lawyers } from '../data/site';
+import alvaroImage from '../assets/retrato-alvaro.jpg';
+import javierImage from '../assets/retrato-javier.jpg';
+
+const portraits = {
+  alvaro: alvaroImage,
+  javier: javierImage,
+};
+---
+
+<section class="section section--alt" id="equipo" aria-labelledby="equipo-title">
+  <div class="shell">
+    <div class="section-head">
+      <div data-reveal>
+        <p class="eyebrow"><span class="eyebrow-num">04</span> El equipo</p>
+        <h2 class="section-title" id="equipo-title">Dos hermanos. Un mismo criterio.</h2>
+      </div>
+      <p class="section-intro" data-reveal style="--reveal-delay: 100ms">
+        Álvaro y Javier comparten despacho desde 2001. Cada asunto lo lleva uno de los dos, con el
+        otro como segunda lectura cuando el caso lo merece.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      {
+        lawyers.map((lawyer, index) => (
+          <article class="lawyer" data-reveal style={`--reveal-delay: ${index * 120}ms`}>
+            <div class="lawyer-media">
+              <Image
+                src={portraits[lawyer.image]}
+                alt={`Retrato de ${lawyer.name}`}
+                layout="constrained"
+                width={1200}
+                height={1500}
+                quality={80}
+                loading="lazy"
+              />
+            </div>
+
+            <div class="lawyer-header">
+              <h3 class="lawyer-name">{lawyer.name}</h3>
+              <p class="lawyer-role">{lawyer.role}</p>
+            </div>
+            <p class="lawyer-area">{lawyer.area}</p>
+            <p class="lawyer-bio">{lawyer.bio}</p>
+            <p class="lawyer-quote">«{lawyer.quote}»</p>
+
+            <ul class="lawyer-credentials">
+              {lawyer.credentials.map((credential) => (
+                <li>{credential}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="team-note">
+      <p>
+        <strong>Con el apoyo de</strong> dos abogadas y un equipo administrativo de tres personas.
+      </p>
+      <p class="team-note-small">Retratos de archivo utilizados con fines ilustrativos.</p>
+    </div>
+  </div>
+</section>

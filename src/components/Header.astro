@@ -1,0 +1,98 @@
+---
+import { nav, site } from '../data/site';
+---
+
+<header class="site-header" data-header>
+  <div class="shell header-inner">
+    <a class="brand" href="#inicio" aria-label="Hernández Abogados — Inicio">
+      <span class="brand-name">Hernández</span>
+      <span class="brand-sub">Abogados</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegación principal">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href={`tel:${site.phoneHref}`}>{site.phone}</a>
+      <a class="btn btn--solid btn--sm" href="#contacto">
+        Consulta
+        <svg class="arrow" width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true">
+          <path d="M0 5h11M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="menu-movil"
+        data-menu-toggle
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="menu-movil" data-mobile-menu aria-hidden="true" inert>
+  <nav aria-label="Navegación móvil">
+    {
+      nav.map((item, index) => (
+        <a href={item.href} data-menu-link>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <div class="mobile-menu-foot">
+    <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+    <span>{site.address.street} · {site.address.postalCode} {site.address.city}</span>
+  </div>
+</div>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+
+  if (toggle && menu) {
+    const setOpen = (open: boolean, restoreFocus = false) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      menu.classList.toggle('is-open', open);
+      menu.inert = !open;
+      menu.setAttribute('aria-hidden', String(!open));
+      document.body.classList.toggle('menu-open', open);
+
+      if (open) {
+        menu.querySelector<HTMLAnchorElement>('a')?.focus({ preventScroll: true });
+      } else if (restoreFocus) {
+        toggle.focus({ preventScroll: true });
+      }
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    menu.querySelectorAll('[data-menu-link]').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false, true);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024 && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+      }
+    });
+  }
+</script>

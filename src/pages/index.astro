@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DemoBar from '../components/DemoBar.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import Manifesto from '../components/Manifesto.astro';
+import Areas from '../components/Areas.astro';
+import Cases from '../components/Cases.astro';
+import Team from '../components/Team.astro';
+import Process from '../components/Process.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+const siteURL = Astro.site ?? new URL('https://www.hernandezabogados.es');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: site.name,
+  legalName: site.legalName,
+  url: siteURL.href,
+  telephone: site.phone,
+  faxNumber: site.fax,
+  email: site.email,
+  foundingDate: String(site.founded),
+  priceRange: '€€',
+  areaServed: 'ES',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    addressCountry: 'ES',
+  },
+  founder: [
+    { '@type': 'Person', name: 'Álvaro Hernández Ferrer', jobTitle: 'Socio fundador' },
+    { '@type': 'Person', name: 'Javier Hernández Ferrer', jobTitle: 'Socio fundador' },
+  ],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '14:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '16:00',
+      closes: '19:00',
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Hernández Abogados — Despacho de abogados en Valencia"
+  description="Despacho de abogados en Valencia especializado en Derecho Laboral, Penal, Civil y Familia, Mercantil y Administrativo. Veinticinco años de ejercicio y atención directa de dos socios fundadores."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <DemoBar />
+  <Header />
+
+  <main id="contenido" tabindex="-1">
+    <Hero />
+    <Stats />
+    <Manifesto />
+    <Areas />
+    <Cases />
+    <Team />
+    <Process />
+    <Faq />
+    <Contact />
+  </main>
+
+  <Footer />
+</BaseLayout>

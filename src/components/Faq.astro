@@ -1,0 +1,35 @@
+---
+import { faqs } from '../data/site';
+---
+
+<section class="section section--paper" id="preguntas" aria-labelledby="faq-title">
+  <div class="shell">
+    <div class="faq-grid">
+      <div class="faq-aside" data-reveal>
+        <p class="eyebrow"><span class="eyebrow-num">06</span> Preguntas frecuentes</p>
+        <h2 class="section-title" id="faq-title" style="font-size: clamp(2rem, 3.2vw, 2.9rem);">
+          Las preguntas que más nos hacen.
+        </h2>
+        <p>
+          Si tu duda no está aquí, escríbenos sin compromiso. Responder a tiempo también forma parte
+          del oficio.
+        </p>
+        <a href="#contacto">Hacer una consulta</a>
+      </div>
+
+      <div class="faq-list" data-reveal style="--reveal-delay: 120ms">
+        {
+          faqs.map((faq, index) => (
+            <details class="faq-item" open={index === 0}>
+              <summary>
+                <span class="faq-q">{faq.q}</span>
+                <span class="faq-mark" aria-hidden="true"></span>
+              </summary>
+              <p class="faq-a">{faq.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

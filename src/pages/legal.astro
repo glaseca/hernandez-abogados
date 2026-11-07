@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const year = new Date().getFullYear();
+---
+
+<BaseLayout
+  title="Información legal — Hernández Abogados"
+  description="Aviso legal, política de privacidad y política de cookies del despacho Hernández Abogados."
+>
+  <header class="legal-header">
+    <div class="shell header-inner">
+      <a class="brand" href={base} aria-label="Hernández Abogados — Inicio">
+        <span class="brand-name">Hernández</span>
+        <span class="brand-sub">Abogados</span>
+      </a>
+      <a class="legal-back" href={base}>← Volver al inicio</a>
+    </div>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <section class="legal-hero">
+      <div class="shell">
+        <p class="eyebrow eyebrow--inv">Información legal</p>
+        <h1 class="legal-title">Aviso legal, privacidad y cookies.</h1>
+        <p class="legal-updated">Última actualización · Noviembre de 2026</p>
+      </div>
+    </section>
+
+    <div class="legal-body">
+      <div class="shell legal-grid">
+        <nav class="legal-nav" aria-label="Contenido legal">
+          <a href="#aviso">01 · Aviso legal</a>
+          <a href="#privacidad">02 · Privacidad</a>
+          <a href="#cookies">03 · Cookies</a>
+        </nav>
+
+        <div class="prose">
+          <p class="demo-note">
+            <strong>Nota de demostración.</strong> Este despacho no existe y los datos de contacto son
+            ficticios. Los textos legales que siguen son una plantilla orientativa y no constituyen
+            asesoramiento jurídico. Antes de publicar una web real, deben revisarse y adaptarse por un
+            profesional.
+          </p>
+
+          <section id="aviso">
+            <h2>01 · Aviso legal</h2>
+            <p>
+              En cumplimiento del artículo 10 de la Ley 34/2002, de Servicios de la Sociedad de la
+              Información y de Comercio Electrónico (LSSI-CE), se informa de que este sitio web es
+              titularidad de <strong>{site.legalName}</strong>, con domicilio profesional en{' '}
+              {site.address.street}, {site.address.postalCode} {site.address.city} (España), correo
+              electrónico <a href={`mailto:${site.email}`}>{site.email}</a> y teléfono{' '}
+              <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.
+            </p>
+            <p>
+              Sus socios figuran colegiados en el {site.ica} con los números {site.icaNumbers}. La
+              actividad profesional se sujeta al Estatuto General de la Abogacía Española y al código
+              deontológico aplicable.
+            </p>
+            <h3>Propiedad intelectual</h3>
+            <p>
+              Los contenidos de este sitio —textos, diseño, imágenes y código— están protegidos por la
+              normativa de propiedad intelectual. Queda prohibida su reproducción total o parcial sin
+              autorización expresa, salvo para uso personal y no comercial.
+            </p>
+            <h3>Responsabilidad</h3>
+            <p>
+              La información publicada tiene carácter general y no sustituye el asesoramiento jurídico
+              individualizado. El despacho no se responsabiliza del uso que terceros hagan de los
+              contenidos ni de las decisiones adoptadas sin una consulta profesional previa.
+            </p>
+          </section>
+
+          <section id="privacidad">
+            <h2>02 · Política de privacidad</h2>
+            <p>
+              <strong>Responsable del tratamiento:</strong> {site.legalName}, con domicilio en{' '}
+              {site.address.street}, {site.address.postalCode} {site.address.city}.
+            </p>
+            <h3>Finalidad y base jurídica</h3>
+            <p>
+              Los datos facilitados a través de los canales de contacto se utilizan para atender
+              consultas, valorar la viabilidad de un asunto y, en su caso, formalizar la relación
+              profesional. La base jurídica es el consentimiento del interesado y la ejecución de la
+              relación contractual.
+            </p>
+            <h3>Conservación y destinatarios</h3>
+            <p>
+              Los datos se conservan durante el tiempo necesario para atender la solicitud y, después,
+              durante los plazos legales de prescripción. No se ceden a terceros salvo obligación legal
+              o necesidad imprescindible para la prestación del servicio.
+            </p>
+            <h3>Derechos</h3>
+            <p>
+              Puede ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y
+              portabilidad escribiendo a <a href={`mailto:${site.email}`}>{site.email}</a>, o
+              reclamando ante la Agencia Española de Protección de Datos.
+            </p>
+            <p>
+              <strong>Aviso:</strong> el formulario de contacto de esta demostración no envía datos a
+              ningún servidor ni los almacena. No introduzcas información personal real.
+            </p>
+          </section>
+
+          <section id="cookies">
+            <h2>03 · Política de cookies</h2>
+            <p>
+              Esta web no utiliza cookies de análisis, publicidad ni seguimiento. No se elaboran
+              perfiles de navegación ni se comparten datos con terceros con fines publicitarios.
+            </p>
+            <p>
+              Pueden generarse cookies estrictamente técnicas por parte del proveedor de alojamiento,
+              necesarias para la seguridad y el funcionamiento básico del sitio. Estas cookies no
+              requieren consentimiento previo conforme a la normativa aplicable.
+            </p>
+            <p>
+              Si en el futuro se incorporan herramientas de medición o servicios de terceros, esta
+              política se actualizará y se solicitará el consentimiento correspondiente.
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-bottom" style="margin-top: 0; padding-top: 0; border-top: 0;">
+        <p>© {year} Hernández Abogados. Landing de demostración.</p>
+        <div class="footer-legal">
+          <span>Contenido ficticio</span>
+          <span>Imágenes: Unsplash</span>
+        </div>
+        <a class="to-top" href={base}>Volver al inicio</a>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>

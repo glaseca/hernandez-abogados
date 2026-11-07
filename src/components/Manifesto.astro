@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import libraryImage from '../assets/despacho-library.jpg';
+---
+
+<section class="section section--paper" id="despacho" aria-labelledby="despacho-title">
+  <div class="shell">
+    <div class="manifesto-grid">
+      <div class="manifesto-label">
+        <p class="eyebrow"><span class="eyebrow-num">01</span> El despacho</p>
+      </div>
+
+      <div class="manifesto-body" data-reveal>
+        <h2 class="manifesto-title" id="despacho-title">
+          Un despacho pequeño por decisión, no por tamaño.
+        </h2>
+
+        <p class="manifesto-lead">
+          Hernández Abogados nació en 2001 en el centro de Valencia, de la mano de dos hermanos que
+          decidieron ejercer juntos y hacerlo de otra manera: pocos asuntos, todos importantes.
+        </p>
+
+        <p class="manifesto-text">
+          Veinticinco años después seguimos siendo dos socios y un equipo reducido. No derivamos los
+          casos a terceros ni convertimos el despacho en una fábrica de expedientes. Quien te recibe
+          es quien estudia tu caso, quien negocia y, si hace falta, quien se pone de pie en la sala.
+          Esa forma de trabajar tiene un nombre: responsabilidad.
+        </p>
+
+        <div class="signature">
+          <p class="signature-name">Álvaro y Javier Hernández</p>
+          <p class="signature-role">Socios fundadores</p>
+        </div>
+
+        <dl class="facts">
+          <div class="fact">
+            <dt>Fundación</dt>
+            <dd>Valencia, 2001</dd>
+          </div>
+          <div class="fact">
+            <dt>Socios</dt>
+            <dd>Dos hermanos</dd>
+          </div>
+          <div class="fact">
+            <dt>Atención</dt>
+            <dd>Directa y confidencial</dd>
+          </div>
+          <div class="fact">
+            <dt>Clientes</dt>
+            <dd>En toda España</dd>
+          </div>
+        </dl>
+      </div>
+
+      <figure class="manifesto-media" data-reveal style="--reveal-delay: 120ms">
+        <div class="media-figure">
+          <div class="media-img">
+            <Image
+              src={libraryImage}
+              alt="Pasillo de una biblioteca jurídica con estanterías de libros y luces cálidas"
+              layout="constrained"
+              width={1400}
+              height={1120}
+              quality={80}
+              loading="lazy"
+            />
+          </div>
+          <figcaption>Biblioteca jurídica · Calle de la Paz, 23 · Valencia</figcaption>
+        </div>
+
+        <div class="seal" aria-hidden="true">
+          <svg class="seal-ring" viewBox="0 0 100 100">
+            <defs>
+              <path
+                id="seal-path"
+                d="M 50,50 m -39,0 a 39,39 0 1,1 78,0 a 39,39 0 1,1 -78,0"
+              ></path>
+            </defs>
+            <text>
+              <textPath href="#seal-path" startOffset="0">
+                Hernández Abogados · Valencia · 2001 ·
+              </textPath>
+            </text>
+          </svg>
+          <span class="seal-core">25<small>años</small></span>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>

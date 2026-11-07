@@ -1,0 +1,49 @@
+---
+import { cases } from '../data/site';
+---
+
+<section class="section section--paper" id="casos" aria-labelledby="casos-title">
+  <div class="shell">
+    <div class="section-head">
+      <div data-reveal>
+        <p class="eyebrow"><span class="eyebrow-num">03</span> Casos representativos</p>
+        <h2 class="section-title" id="casos-title">Resultados que no podemos contar con nombres.</h2>
+      </div>
+      <p class="section-intro" data-reveal style="--reveal-delay: 100ms">
+        El secreto profesional nos impide identificar a nuestros clientes. Sí podemos explicar cómo
+        trabajamos y qué se consiguió en algunos asuntos.
+      </p>
+    </div>
+
+    <div class="cases-grid">
+      {
+        cases.map((item, index) => (
+          <article class="case-card" data-reveal style={`--reveal-delay: ${index * 80}ms`}>
+            <div class="case-top">
+              <span>{item.area}</span>
+              <span>{item.year}</span>
+            </div>
+            <h3 class="case-title">{item.title}</h3>
+            <p class="case-text">{item.description}</p>
+            <p class="case-result">
+              <span>Resultado</span>
+              {item.result}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="legal-note">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1" />
+        <path d="M8 7.2v4M8 4.7v.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+      </svg>
+      <span>
+        <strong>Confidencialidad.</strong> Los casos se describen de forma anonimizada y con datos
+        alterados para proteger la identidad de los clientes. Los resultados anteriores no garantizan
+        resultados futuros: cada asunto depende de sus propias circunstancias, pruebas y plazos.
+      </span>
+    </p>
+  </div>
+</section>

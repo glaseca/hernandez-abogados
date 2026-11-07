@@ -1,0 +1,21 @@
+---
+import { stats } from '../data/site';
+---
+
+<div class="stats" aria-label="El despacho en cifras">
+  <div class="shell">
+    <div class="stats-grid">
+      {
+        stats.map((stat) => (
+          <div class="stat">
+            <p class="stat-value">
+              {stat.value}
+              {stat.suffix && <sup>{stat.suffix}</sup>}
+            </p>
+            <p class="stat-label">{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

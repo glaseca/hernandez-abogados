@@ -1,0 +1,40 @@
+---
+import { steps } from '../data/site';
+---
+
+<section class="section section--ink" id="proceso" aria-labelledby="proceso-title">
+  <div class="shell">
+    <div class="process-grid">
+      <div data-reveal>
+        <p class="eyebrow eyebrow--inv"><span class="eyebrow-num">05</span> Cómo trabajamos</p>
+        <h2 class="section-title" id="proceso-title">Claro desde el primer día.</h2>
+        <p class="section-intro" style="justify-self: start; margin-top: 22px;">
+          Un asunto jurídico ya es bastante incierto por sí solo. La forma de trabajar no debería
+          añadir más incertidumbre.
+        </p>
+
+        <blockquote class="quote">
+          <p class="quote-text">
+            «Nos explicaron cada paso antes de darlo. Nunca tuvimos la sensación de estar en manos de
+            desconocidos.»
+          </p>
+          <cite class="quote-cite">Cliente de Derecho Laboral · Valencia, 2024</cite>
+        </blockquote>
+      </div>
+
+      <ol class="steps" data-reveal style="--reveal-delay: 120ms">
+        {
+          steps.map((step, index) => (
+            <li class="step">
+              <span class="step-num">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="step-title">{step.title}</h3>
+                <p class="step-text">{step.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>

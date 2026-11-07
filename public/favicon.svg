@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hernández Abogados">
+  <rect width="64" height="64" fill="#0a0a0a"/>
+  <g stroke="#f3f0e9" fill="none">
+    <path d="M23 17v30M41 17v30M23 32h18" stroke-width="2.4"/>
+    <path d="M19 17h8M19 47h8M37 17h8M37 47h8" stroke-width="1.1"/>
+  </g>
+</svg>

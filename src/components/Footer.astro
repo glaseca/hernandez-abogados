@@ -1,0 +1,81 @@
+---
+import { nav, site } from '../data/site';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const legalLinks = [
+  { href: `${base}legal#aviso`, label: 'Aviso legal' },
+  { href: `${base}legal#privacidad`, label: 'Privacidad' },
+  { href: `${base}legal#cookies`, label: 'Cookies' },
+];
+---
+
+<footer class="site-footer" id="pie">
+  <div class="shell">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="#inicio" aria-label="Hernández Abogados — Inicio">
+          <span class="brand-name">Hernández</span>
+          <span class="brand-sub">Abogados</span>
+        </a>
+        <p class="footer-tagline">
+          Pocos asuntos. Todos importantes. Abogacía de despacho, con nombre y apellidos.
+        </p>
+        <p class="footer-seal">
+          {site.ica}<br />
+          Colegiados n.º {site.icaNumbers}
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">Navegación</p>
+        <ul class="footer-links">
+          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          <li><a href="#proceso">Cómo trabajamos</a></li>
+          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">Información legal</p>
+        <ul class="footer-links">
+          {legalLinks.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+        <p class="footer-title" style="margin-top: 26px;">Contacto</p>
+        <ul class="footer-links">
+          <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">Despacho</p>
+        <address class="footer-contact">
+          <a href={site.maps} target="_blank" rel="noopener noreferrer">
+            {site.address.street}<br />
+            {site.address.postalCode} {site.address.city}
+          </a>
+          <p class="footer-hours">{site.hours}<br />Cita previa recomendada</p>
+        </address>
+      </div>
+    </div>
+
+    <p class="footer-mark" aria-hidden="true">Hernández Abogados</p>
+
+    <div class="footer-bottom">
+      <p>© {new Date().getFullYear()} Hernández Abogados. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <span>Landing de demostración · Contenido ficticio</span>
+        <span>Imágenes: Unsplash</span>
+        <span>Diseño y desarrollo con Astro</span>
+      </div>
+      <a class="to-top" href="#inicio">
+        Volver arriba
+        <svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true">
+          <path d="M5 11V1M1 5l4-4 4 4" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>

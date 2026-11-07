@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero-library.jpg';
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <div class="hero-media" aria-hidden="true">
+    <Image
+      src={heroImage}
+      alt=""
+      layout="full-width"
+      width={2200}
+      height={1467}
+      loading="eager"
+      fetchpriority="high"
+      quality={82}
+    />
+  </div>
+
+  <div class="shell hero-inner">
+    <p class="eyebrow hero-eyebrow">Despacho de abogados · Valencia · Desde 2001</p>
+
+    <h1 class="hero-title" id="hero-title">
+      <span class="line">Hernández</span>
+      <span class="line line--italic">Abogados</span>
+    </h1>
+
+    <div class="hero-lower">
+      <p class="hero-tagline">Derecho con criterio.<br />Defensa con oficio.</p>
+
+      <div>
+        <p class="hero-lead">
+          Veinticinco años acompañando a personas, familias y empresas en los momentos en que una
+          decisión jurídica lo cambia todo. Dos socios, atención directa y confidencialidad absoluta.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn--solid" href="#contacto">
+            Primera consulta
+            <svg class="arrow" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+              <path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" />
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#areas">Áreas de práctica</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-foot" aria-hidden="true">
+      <span class="hero-foot-left">39°28′ N · 0°22′ O — Valencia</span>
+      <span class="hero-foot-right">Respuesta en menos de 24 h laborables</span>
+    </div>
+  </div>
+</section>

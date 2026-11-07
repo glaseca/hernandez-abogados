@@ -1,0 +1,46 @@
+---
+import { areas } from '../data/site';
+---
+
+<section class="section section--ink" id="areas" aria-labelledby="areas-title">
+  <div class="shell">
+    <div class="section-head">
+      <div data-reveal>
+        <p class="eyebrow eyebrow--inv"><span class="eyebrow-num">02</span> Áreas de práctica</p>
+        <h2 class="section-title" id="areas-title">Cinco áreas. Una misma forma de trabajar.</h2>
+      </div>
+      <p class="section-intro" data-reveal style="--reveal-delay: 100ms">
+        No hacemos de todo. Hacemos bien aquello que conocemos, y cuando un asunto queda fuera de
+        nuestro terreno lo decimos desde el primer día.
+      </p>
+    </div>
+
+    <div class="areas" data-reveal>
+      {
+        areas.map((area, index) => (
+          <details class="area" name="areas" open={index === 0}>
+            <summary>
+              <span class="area-index">{String(index + 1).padStart(2, '0')}</span>
+              <h3 class="area-name">{area.title}</h3>
+              <span class="area-brief">{area.brief}</span>
+              <span class="area-mark" aria-hidden="true"></span>
+            </summary>
+            <div class="area-content">
+              <p class="area-desc">{area.description}</p>
+              <ul class="area-services">
+                {area.services.map((service) => (
+                  <li>{service}</li>
+                ))}
+              </ul>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+
+    <div class="areas-foot">
+      <p>¿Tu asunto no encaja en ninguna de estas áreas? Escríbenos y te orientamos.</p>
+      <a href="#contacto">Hablar con el despacho</a>
+    </div>
+  </div>
+</section>

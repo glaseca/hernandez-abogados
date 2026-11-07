@@ -1,0 +1,168 @@
+---
+import { areas, channels, site } from '../data/site';
+import Icon from './Icon.astro';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<section class="section contact" id="contacto" aria-labelledby="contacto-title">
+  <div class="shell">
+    <div class="contact-grid">
+      <div data-reveal>
+        <p class="eyebrow eyebrow--inv"><span class="eyebrow-num">07</span> Contacto</p>
+        <h2 class="section-title" id="contacto-title">Cuéntenos su caso.</h2>
+        <p class="contact-lead">
+          Respondemos en menos de 24 horas laborables. La primera conversación es confidencial, dura
+          45 minutos y no tiene coste ni compromiso.
+        </p>
+
+        <div class="channels">
+          {
+            channels.map((channel) => (
+              <a
+                class="channel"
+                href={channel.href}
+                aria-disabled={channel.href ? undefined : 'true'}
+                tabindex={channel.href ? undefined : -1}
+                target={channel.href?.startsWith('http') ? '_blank' : undefined}
+                rel={channel.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                <span class="channel-icon">
+                  <Icon name={channel.icon} />
+                </span>
+                <span>
+                  <span class="channel-label">{channel.label}</span>
+                  <span class="channel-value">{channel.value}</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="socials">
+          <a
+            class="social-link"
+            href={site.linkedin}
+            aria-label="LinkedIn de Hernández Abogados"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="linkedin" size={15} />
+          </a>
+          <a class="social-link" href={`mailto:${site.email}`} aria-label="Enviar un correo al despacho">
+            <Icon name="mail" size={16} />
+          </a>
+          <a class="social-link" href={`tel:${site.phoneHref}`} aria-label="Llamar al despacho">
+            <Icon name="phone" size={16} />
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" action="#" method="post" data-contact-form data-reveal style="--reveal-delay: 120ms">
+        <div class="field">
+          <label for="nombre">Nombre y apellidos <span class="req" aria-hidden="true">*</span></label>
+          <input
+            id="nombre"
+            name="nombre"
+            type="text"
+            autocomplete="name"
+            placeholder="Nombre completo"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="email">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="nombre@correo.com"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="telefono">Teléfono</label>
+          <input
+            id="telefono"
+            name="telefono"
+            type="tel"
+            autocomplete="tel"
+            placeholder="600 000 000"
+          />
+        </div>
+
+        <div class="field">
+          <label for="area">Área de interés <span class="req" aria-hidden="true">*</span></label>
+          <select id="area" name="area" required>
+            <option value="" selected disabled>Selecciona un área</option>
+            {areas.map((area) => <option value={area.id}>{area.title}</option>)}
+            <option value="otro">Otro / no lo sé</option>
+          </select>
+        </div>
+
+        <div class="field field--full">
+          <label for="mensaje">Cuéntenos su caso <span class="req" aria-hidden="true">*</span></label>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            rows="4"
+            placeholder="Resume brevemente lo ocurrido. No incluyas datos sensibles en este primer mensaje."
+            required
+          ></textarea>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" name="privacidad" required />
+          <span>
+            He leído y acepto la <a href={`${base}legal#privacidad`}>política de privacidad</a>. Los
+            datos se utilizan únicamente para responder a esta consulta.
+            <span class="req" aria-hidden="true">*</span>
+          </span>
+        </label>
+
+        <div class="form-foot">
+          <button class="btn btn--solid" type="submit">
+            Enviar solicitud
+            <svg class="arrow" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+              <path d="M0 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" />
+            </svg>
+          </button>
+          <p class="form-disclaimer">
+            Formulario de demostración: no se envía ningún dato a ningún servidor.
+          </p>
+        </div>
+
+        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  const status = document.querySelector<HTMLElement>('[data-form-status]');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (status) {
+      status.textContent =
+        'Gracias por escribirnos. Esto es una demostración: el formulario no envía datos a ningún servidor y no se ha concertado ninguna cita.';
+      status.classList.add('is-visible');
+      status.setAttribute('tabindex', '-1');
+      status.focus({ preventScroll: true });
+    }
+
+    form.reset();
+  });
+</script>
